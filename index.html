@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝒯𝒶𝓁𝓁𝑒𝓇 𝓍 𝓎 𝓏 1ra sesión</title>
+    <link rel="shortcut icon" href="control-de-ciber-cliente.png"">
+
+</head>
+
+<body>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+    <script>
+        // AFRAME.registerComponent("foo", {
+        //     init: function () {
+        //         let toggle = false
+        //         this.el.addEventListener("click", (e) => {
+        //             let cylinders = document.querySelectorAll("#mario")
+        //             cylinders.forEach(function (el) {
+        //                 el.setAttribute("visible", toggle)
+        //             })
+        //             toggle = !toggle
+        //         })
+        //     }
+        // })
+
+
+        AFRAME.registerComponent("foo", {
+    init: function() {
+      let box = document.querySelector("a-box")
+      let sphere = document.querySelector("#mario")
+      let obj = document.querySelector("#mario2")
+
+      obj.setAttribute("visible", "false")
+
+      box.addEventListener("click", e => {
+        sphere.setAttribute("visible", !sphere.getAttribute("visible"))
+        
+        if (sphere.getAttribute("visible")) {
+        	obj.setAttribute("visible", "false")
+        } else {
+        	obj.setAttribute("visible", "true")
+        }
+      })
+    }
+  })
+
+        
+    </script>
+    <a-scene loading-screen="dotsColor: red; backgroundColor: black" vr-mode-ui="enabled: false">
+        <a-entity id="rig" movement-controls kinematic-body position="2.192 0 19.956">
+            <a-entity id="camera" camera position="0 2 0" look-controls  cursor="rayOrigin: mouse"></a-entity>
+          </a-entity>
+        <a-assets>
+            <a-asset-item id="tree" src="./controlllo.gltf"></a-asset-item>
+            <!-- <a-asset-item id="tree2" src="./hola2.gltf"></a-asset-item> -->
+            <img id="sky" src="aa.jpg">
+            <img id="my-image" src="infO2.png">
+            <img id="floor" src="a.jpg">
+
+
+        </a-assets>
+
+        <!-- <a-box position="-3a 0.5 -3" rotation="0 45 0" color="#4CC3D9" foo></a-box> -->
+    
+        <a-entity navigate-on-click="url: https://us02web.zoom.us/j/89417711833?pwd=eFRUVEFhOUlyZ3JDcjJjbnZQbnFidz09" animation="property: rotation; to: 0 360 0; dur: 10000; easing: linear; loop: true" position="1.567 0 0" id="mario" scale="2 2 2" gltf-model="#tree"></a-entity>
+
+        <a-light type="ambient" intensity="1.2s" ></a-light>
+        <a-light type="point"   position="-7.504 5.560 -5.006"    light="intensity:  3.61;  color:  #1fcee5;  groundColor:  #0ee174;  decay:  1.93;  penumbra:  1;  shadowBias:  0.49;  shadowCameraFar:  501.21;  shadowCameraBottom:  -4.79"        ></a-light>
+        <a-light type="point"     position="0 3.624 3.708"    light="intensity:  3.61;  color:  #1fcee5;  groundColor:  #0ee174;  decay:  1.93;  penumbra:  1;  shadowBias:  0.49;  shadowCameraFar:  501.21;  shadowCameraBottom:  -4.79"        ></a-light>
+
+        <!-- <a-image rotation="-15.202 0 0"  scale="7.676 1.781 1.857" position="1.419 0.43712 1.680" material="transparent:true; opacity:1;alpha-test:0.5" src="#my-image" ></a-image> -->
+
+
+<a-sky  src="#sky" animation="property: rotation; to: 0 360 0; dur: 60000; easing: linear; loop: true"  ></a-sky>
+<!-- <a-plane animation="property: rotation; to: -90 360 0; dur: 60000; easing: linear; loop: true" static-body  src="#floor"  width="30" height="30" scale="2.110 1.180 1.000" rotation="-90 0 0" position="0 -2 -2.5"  ></a-plane> -->
+
+
+<script>
+  AFRAME.registerComponent('navigate-on-click', {
+      schema: {
+          url: { default: '' }
+      },
+
+      init: function () {
+          var data = this.data;
+          var el = this.el;
+
+          el.addEventListener('click', function () {
+              window.location.href = data.url;
+          });
+      }
+  });        
+</script>
+    </a-scene>
+
+</body>
+
+</html>
